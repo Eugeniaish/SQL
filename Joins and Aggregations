@@ -1,0 +1,36 @@
+SELECT * 
+FROM accounts
+JOIN orders 
+ON accounts.id = orders.account_id;
+Description:
+Performs an inner join between accounts and their orders.
+
+SELECT
+	name, total_amt_usd
+FROM accounts
+JOIN orders ON accounts.id = orders.account_id
+ORDER BY total_amt_usd DESC 
+LIMIT 1;
+Description:
+Displays the account and total amount of the single largest order.
+
+SELECT 
+	MAX(total_amt_usd) AS "Max Order",
+	MIN(total_amt_usd) AS "Min Order",
+	AVG(total_amt_usd) AS "Average Order",
+	COUNT(*) AS "Total Orders",
+	SUM(total_amt_usd) AS "Total Value"
+FROM orders;
+Description:
+Calculates key statistics — max, min, average, total number, and total value of all orders.
+
+SELECT 
+	name, SUM(total_amt_usd) AS "Total Amount", COUNT(*) AS freq
+FROM accounts
+JOIN orders ON accounts.id = orders.account_id
+GROUP BY name 
+ORDER BY "Total Amount" DESC
+LIMIT 10;
+Description:
+Lists the top 10 accounts by total order amount and order frequency.
+
