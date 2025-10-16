@@ -1,0 +1,9 @@
+SELECT * FROM accounts
+WHERE name LIKE '%Group%';
+Description:
+Finds all accounts whose names contain the word "Group" (case-sensitive).
+
+SELECT * FROM accounts
+WHERE name ILIKE '%Group%';
+Description:
+Case-insensitive version of the above query.
