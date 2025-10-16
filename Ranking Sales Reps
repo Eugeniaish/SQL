@@ -1,0 +1,16 @@
+WITH sr AS (
+	SELECT 
+		sales_reps.name AS sr,
+		SUM(total) AS tt
+	FROM sales_reps
+	JOIN accounts ON sales_reps.id = accounts.sales_rep_id
+	JOIN orders ON accounts.id = orders.account_id
+	GROUP BY sr
+)
+SELECT
+	sr,
+	tt,
+	RANK() OVER (ORDER BY tt DESC) AS rnk
+FROM sr;
+Description:
+Ranks sales reps by their total sales volume.
