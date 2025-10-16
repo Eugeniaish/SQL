@@ -1,0 +1,21 @@
+SELECT account_id, total_amt_usd 
+FROM orders 
+WHERE total_amt_usd = (
+	SELECT total_amt_usd 
+	FROM orders 
+	ORDER BY total_amt_usd DESC 
+	LIMIT 1
+);
+Description:
+Finds the order(s) with the maximum total amount.
+
+SELECT name 
+FROM accounts 
+WHERE id = (
+	SELECT account_id 
+	FROM orders 
+	ORDER BY total_amt_usd DESC 
+	LIMIT 1
+);
+Description:
+Returns the name of the account with the largest order.
