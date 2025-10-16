@@ -1,0 +1,22 @@
+WITH total AS (
+	SELECT 
+		EXTRACT(YEAR FROM occurred_at) AS order_year,
+		SUM(total_amt_usd) AS total_amt
+	FROM orders
+	GROUP BY order_year
+),
+yoy_sales AS (
+	SELECT 
+		order_year,
+		total_amt,
+		LAG(total_amt) OVER (ORDER BY order_year) AS prev_year
+	FROM total
+)
+SELECT
+	order_year AS year,
+	total_amt,
+	prev_year,
+	ROUND(((total_amt - prev_year) / total_amt) * 100, 2) || '%' AS yoy_pct
+FROM yoy_sales;
+Description:
+Computes year-over-year sales change with rounded percentage formatting.
