@@ -1,0 +1,12 @@
+WITH group_trans AS (
+	SELECT * 
+	FROM accounts acts
+	JOIN orders ods ON acts.id = ods.account_id
+	WHERE name ILIKE '%group%'
+)
+SELECT name, AVG(total) AS average
+FROM group_trans
+GROUP BY name
+ORDER BY average DESC;
+Description:
+Uses a CTE (Common Table Expression) to filter "Group" accounts, then calculates their average order totals.
