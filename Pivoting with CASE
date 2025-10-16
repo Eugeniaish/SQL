@@ -1,0 +1,7 @@
+SELECT
+	SUM(CASE WHEN channel = 'direct' THEN 1 ELSE 0 END) AS direct,
+	SUM(CASE WHEN channel = 'facebook' THEN 1 ELSE 0 END) AS facebook,
+	SUM(CASE WHEN channel = 'twitter' THEN 1 ELSE 0 END) AS twitter
+FROM web_events;
+Description:
+Counts how many events came from each major channel.
