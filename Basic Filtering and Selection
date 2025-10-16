@@ -1,0 +1,27 @@
+This document describes a collection of SQL queries executed on a PostgreSQL database containing tables such as orders, accounts, region, sales_reps, and web_events.
+
+SELECT * 
+FROM orders
+WHERE account_id = 1221 AND total_amt_usd > 5000;
+Description:
+Returns all orders for account 1221 where the total order amount exceeds $5000.
+
+SELECT *
+FROM orders
+WHERE account_id IN (1221, 1001, 1911);
+Description:
+Selects all orders belonging to any of the specified account IDs — 1221, 1001, or 1911.
+
+SELECT *
+FROM orders
+WHERE account_id IN (1001, 1221, 1911) AND total > 500;
+Description:
+Retrieves orders from the listed accounts where the total order amount is greater than 500.
+
+SELECT * FROM orders
+WHERE total >= 200 AND total <= 500;
+
+SELECT * FROM orders
+WHERE total BETWEEN 200 AND 500;
+Description:
+Both queries fetch orders with total amounts ranging from 200 to 500.
