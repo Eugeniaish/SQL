@@ -1,0 +1,4 @@
+SELECT DISTINCT channel FROM web_events;
+SELECT COUNT(DISTINCT channel) FROM web_events;
+Description:
+Lists unique marketing channels and counts how many distinct ones exist.
