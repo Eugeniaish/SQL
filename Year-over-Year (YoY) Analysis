@@ -1,0 +1,33 @@
+WITH total AS (
+	SELECT 
+		EXTRACT(YEAR FROM occurred_at) AS order_year,
+		SUM(total_amt_usd) AS total_amt
+	FROM orders
+	GROUP BY order_year
+)
+SELECT
+	order_year,
+	total_amt,
+	LAG(total_amt) OVER (ORDER BY order_year) AS prev_year,
+	total_amt - LAG(total_amt) OVER (ORDER BY order_year) AS yoy_diff
+FROM total
+ORDER BY order_year;
+Description:
+Calculates the year-over-year difference in total sales using window functions.
+
+WITH total AS (
+	SELECT 
+		EXTRACT(YEAR FROM occurred_at) AS order_year,
+		SUM(total_amt_usd) AS total_amt
+	FROM orders
+	GROUP BY order_year
+)
+SELECT 
+	order_year,
+	total_amt,
+	total_amt - LAG(total_amt) OVER (ORDER BY order_year) AS yoy_diff,
+	(total_amt - LAG(total_amt) OVER (ORDER BY order_year)) / total_amt * 100 AS yoy_pct
+FROM total
+ORDER BY order_year;
+Description:
+Adds a YoY percentage growth column to show change relative to the current year.
