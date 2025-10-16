@@ -1,0 +1,23 @@
+SELECT 
+	account_id,
+	total,
+	RANK() OVER (ORDER BY total) AS rnk
+FROM orders;
+Description:
+Ranks all orders by total amount, allowing for ties (gaps in rank numbers).
+
+SELECT 
+	account_id,
+	total,
+	DENSE_RANK() OVER (ORDER BY total) AS rnk
+FROM orders;
+Description:
+Similar to RANK(), but no gaps in rank values.
+
+SELECT 
+	account_id,
+	total,
+	ROW_NUMBER() OVER (ORDER BY total) AS rnk
+FROM orders;
+Description:
+Assigns a unique sequential number to each row.
