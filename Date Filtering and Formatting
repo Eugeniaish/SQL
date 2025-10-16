@@ -1,0 +1,24 @@
+SELECT * 
+FROM orders
+WHERE occurred_at BETWEEN '2016-11-01' AND '2016-11-30';
+Description:
+Retrieves orders that occurred during November 2016.
+
+SELECT
+	id,
+	occurred_at,
+	TO_CHAR(occurred_at, 'Day') AS day_name,
+	TO_CHAR(occurred_at, 'Month') AS month_name,
+	EXTRACT(DOW FROM occurred_at) AS day_of_week
+FROM orders;
+Description:
+Formats order dates to show the day and month names and extracts the day of the week (0=Sunday, 6=Saturday).
+
+SELECT
+	occurred_at,
+	TO_CHAR(occurred_at, 'Day')
+FROM orders
+WHERE EXTRACT(DOW FROM occurred_at) IN (5,6,7)
+  AND EXTRACT(HOUR FROM occurred_at) >= 18;
+Description:
+Finds orders made on Friday evenings or weekends after 6 PM.
