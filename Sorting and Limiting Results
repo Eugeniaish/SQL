@@ -1,0 +1,6 @@
+SELECT * 
+FROM orders
+ORDER BY total_amt_usd DESC
+LIMIT 5;
+Description:
+Displays the top 5 highest-value orders sorted by total_amt_usd in descending order.
