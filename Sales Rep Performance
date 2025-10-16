@@ -1,0 +1,8 @@
+SELECT sales_reps.name, SUM(total_amt_usd) AS total
+FROM sales_reps
+JOIN accounts ON sales_reps.id = accounts.sales_rep_id
+JOIN orders ON accounts.id = orders.account_id
+GROUP BY sales_reps.name
+ORDER BY total DESC;
+Description:
+Ranks sales reps by total sales value.
