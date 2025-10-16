@@ -1,0 +1,9 @@
+SELECT channel, 
+	AVG(total) AS average
+FROM web_events
+JOIN orders ON web_events.account_id = orders.account_id
+GROUP BY channel
+HAVING AVG(total) > 520
+ORDER BY average DESC;
+Description:
+Finds web channels with an average order total above 520.
