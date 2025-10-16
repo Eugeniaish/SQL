@@ -1,0 +1,21 @@
+SELECT DISTINCT name, occurred_at
+FROM accounts
+JOIN orders ON accounts.id = orders.account_id
+WHERE occurred_at >= '2016-01-02';
+sql
+Copy code
+SELECT DISTINCT name, occurred_at
+FROM accounts
+JOIN orders ON accounts.id = orders.account_id
+WHERE occurred_at BETWEEN '2014-01-01' AND '2015-01-01';
+Description:
+Extracts unique account names and order dates within specific date ranges.
+
+SELECT DISTINCT name, occurred_at
+FROM accounts
+JOIN orders ON accounts.id = orders.account_id
+WHERE occurred_at >= (
+	SELECT MAX(occurred_at) FROM orders
+) - INTERVAL '1 year';
+Description:
+Finds all accounts that placed orders within the last year of the dataset.
