@@ -1,0 +1,13 @@
+SELECT 
+	name,
+	website,
+	RIGHT(website, 3) AS rr,
+	POSITION('.' IN website) AS dot_position,
+	STRPOS(website, '.') AS str_position
+FROM accounts;
+Description:
+Demonstrates string manipulation functions:
+
+RIGHT() extracts last 3 characters.
+
+POSITION() / STRPOS() find position of a dot (.) in URLs.
