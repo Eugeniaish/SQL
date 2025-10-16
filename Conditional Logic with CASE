@@ -1,0 +1,10 @@
+SELECT total,
+	CASE 
+		WHEN total <= 500 THEN 'Low'
+		WHEN total > 500 AND total <= 1000 THEN 'Medium'
+		WHEN total > 1000 THEN 'High'
+		ELSE 'Super High'
+	END AS volume
+FROM orders;
+Description:
+Classifies orders into categories based on their total values.
